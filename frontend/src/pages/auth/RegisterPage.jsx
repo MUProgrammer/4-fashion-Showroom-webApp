@@ -9,6 +9,7 @@ import {
   inputClass,
   StepDots,
 } from "./AuthBits";
+import { Navigate, useNavigate } from "react-router-dom";
 
 const RegisterPage = () => {
   const [form, setForm] = useState({
@@ -18,6 +19,7 @@ const RegisterPage = () => {
     confirm: "",
   });
   const [error, setError] = useState("");
+  const navigate=useNavigate();
    function update(field) {
     return (e) => setForm((f) => ({ ...f, [field]: e.target.value }));
   }
@@ -137,7 +139,7 @@ const RegisterPage = () => {
 
       <AuthSwitch>
         Already have an account?{" "}
-        <AuthLink onClick={() => goAuth("login")}>Login</AuthLink>
+        <AuthLink onClick={() => navigate("/login")}>Login</AuthLink>
       </AuthSwitch>
     </div>
   );
