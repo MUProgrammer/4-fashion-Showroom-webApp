@@ -1,5 +1,40 @@
 @import "tailwindcss";
 
+@theme {
+  --color-wine: #5C1A2B;
+  --color-wine-dark: #3E101C;
+  --color-wine-light: #7A2740;
+  --color-blush: #F1D9D3;
+  --color-blush-deep: #E7C0B8;
+  --color-cream: #FBF6F1;
+  --color-charcoal: #2A2224;
+  --color-gold: #B8874F;
+  --color-success: #3F7A5C;
+  --color-success-bg: #E7F1EB;
+  --color-danger: #B5432E;
+  --color-danger-bg: #FBE9E4;
+  --color-muted: #8a7b74;
+  --color-line: #E7DCD3;
+
+  --font-serif: Georgia, "Times New Roman", serif;
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+
+  --shadow-card: 0 2px 10px rgba(42, 34, 36, 0.06);
+
+  --animate-fadein: fadein 0.2s ease;
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 * {
   box-sizing: border-box;
 }
@@ -21,7 +56,6 @@ body {
     @apply outline-none border-wine-light;
   }
 }
-
 
 @layer components {
   .btn {
