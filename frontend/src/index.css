@@ -1,1 +1,87 @@
 @import "tailwindcss";
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: #FBF6F1;
+  color: #2A2224;
+  min-height: 100vh;
+}
+
+@layer base {
+  input,
+  select {
+    @apply w-full px-[11px] py-[9px] border border-line border-[1.5px] rounded-lg text-sm bg-[#fffdfb] text-charcoal font-sans;
+  }
+  input:focus,
+  select:focus {
+    @apply outline-none border-wine-light;
+  }
+}
+
+
+@layer components {
+  .btn {
+    @apply inline-flex items-center gap-2 rounded-lg border border-line border-[1.5px] bg-transparent text-wine px-[18px] py-[10px] text-sm font-semibold cursor-pointer transition-all;
+  }
+  .btn:hover {
+    @apply bg-wine text-white;
+  }
+  .btn-solid {
+    @apply bg-wine text-white border-wine;
+  }
+  .btn-solid:hover {
+    @apply bg-wine-dark;
+  }
+  .btn-danger {
+    @apply border border-danger text-danger;
+  }
+  .btn-danger:hover {
+    @apply bg-danger text-white;
+  }
+  .btn-sm {
+    @apply px-3 py-1.5 text-xs rounded-md;
+  }
+  .btn-ghost {
+    @apply border border-line text-charcoal;
+  }
+  .btn-ghost:hover {
+    @apply bg-blush border-blush-deep text-wine-dark;
+  }
+  .btn-block {
+    @apply w-full justify-center py-[11px] text-[14.5px] mt-1.5;
+  }
+  .field label {
+    @apply block text-[12.5px] text-muted mb-1.5 font-semibold;
+  }
+  .field {
+    @apply mb-3.5;
+  }
+  .panel {
+    @apply bg-white border border-line rounded-2xl shadow-card p-[22px_24px] mb-[22px];
+  }
+  .kpi-card {
+    @apply bg-white border border-line rounded-2xl p-[18px_20px] relative overflow-hidden shadow-card;
+  }
+  .badge {
+    @apply inline-block px-3 py-1 rounded-full text-[11.5px] font-bold tracking-[.3px];
+  }
+  .icon-btn {
+    @apply border border-line bg-white rounded-md w-[30px] h-[30px] flex items-center justify-center cursor-pointer text-muted transition;
+  }
+  .icon-btn:hover {
+    @apply border-wine text-wine bg-blush;
+  }
+  .icon-btn.del:hover {
+    @apply border-danger text-danger bg-danger-bg;
+  }
+  .tab {
+    @apply px-4 py-2 rounded-lg text-[13px] font-semibold cursor-pointer text-muted border border-transparent;
+  }
+  .tab.active {
+    @apply bg-blush text-wine-dark border-blush-deep;
+  }
+}
