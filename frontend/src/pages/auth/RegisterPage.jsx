@@ -12,24 +12,60 @@ import {
 import { Navigate, useNavigate } from "react-router-dom";
 
 const RegisterPage = () => {
-  const [form, setForm] = useState({
+  const navigate = useNavigate();
+  const [formData, setFormData] = useState({
     name: "",
     email: "",
     password: "",
     confirm: "",
   });
   const [error, setError] = useState("");
-  const navigate=useNavigate();
-   function update(field) {
-    return (e) => setForm((f) => ({ ...f, [field]: e.target.value }));
-  }
+  const [success, setSuccess] = useState("");
+  const [loading, setLoading] = useState(false);
 
-  function handleSubmit(e) {
+  // handle change function()
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = (e) => {
     e.preventDefault();
-    setError('');
-    const res = register(form);
-    if (res?.error) setError(res.error);
-  }
+    setError("");
+    setSuccess("");
+    // check if password or confirm password are match
+    if (formData.password !== formData.confirm) {
+      setError("Password and confirm password does not match");
+    }
+    setLoading(true);
+    try {
+      const res = await api.post("/register",{
+          username: formData.username,
+          email: formData.email,
+          password: formData.password,
+        },
+        { withCredentials: true },);
+        setSuccess(res.data.message || "Registered! Please verify your email." )
+        // save the user in local storage
+        localStorage.setItem(
+          "userInfo",
+          JSON.stringify({
+            username: formData.username,
+            email: formData.email,
+          })
+        )
+        // 1 second bd verify py bhj du
+        setTimeout(()=>{ 
+          navigate("/verify")
+        },1000)
+    } catch (error) {
+      setError(
+        error.response?.data?.message ||
+          "Something went wrong. Please try again.",
+      );
+    } finally {
+      setLoading(false);
+    }
+  };
   return (
     <div>
       <AuthBrand />
