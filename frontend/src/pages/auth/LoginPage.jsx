@@ -13,27 +13,13 @@ import { useNavigate } from "react-router-dom";
 
 const LoginPage = () => {
     
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
-  const navigate=useNavigate();
-  function handleSubmit(e) {
-    e.preventDefault();
-    setError('');
-    const res = login(email, password);
-    if (res?.error) {
-      setError(res.error);
-    } else {
-      setEmail('');
-      setPassword('');
-    }
-  }
+  
   return (
       <div>
       <AuthBrand />
       <p className="text-center text-[11.5px] tracking-[2px] uppercase text-muted mb-[26px]">Shop manager</p>
       <AuthTitle>Login to your account</AuthTitle>
-      <AuthError message={error} />
+      {/* <AuthError message={error} /> */}
 
       <form onSubmit={handleSubmit}>
         <div className="mb-3.5">
