@@ -1,17 +1,34 @@
 import React from "react";
 import AuthLayout from "./pages/auth/AuthLayout";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  Navigate,
+  Outlet,
+} from "react-router-dom";
 import RegisterPage from "./pages/auth/RegisterPage";
 import LoginPage from "./pages/auth/LoginPage";
 import OtpPage from "./pages/auth/OtpPage";
 import PandingPage from "./pages/auth/PandingPage";
 import ForgetPage from "./pages/auth/ForgetPage";
 import ResetPage from "./pages/auth/ResetPage";
+import WelcomePage from "./pages/auth/WelcomePage";
+
+// AuthLayout ab sirf auth pages ko wrap karta hai.
+// <Outlet /> wohi child route render karta hai jo match hua ho.
+const AuthLayoutRoute = () => (
+  <AuthLayout>
+    <Outlet />
+  </AuthLayout>
+);
+
 const App = () => {
   return (
     <BrowserRouter>
-      <AuthLayout>
-        <Routes>
+      <Routes>
+        {/* ---- auth pages, AuthLayout ke andar ---- */}
+        <Route element={<AuthLayoutRoute />}>
           <Route path="/" element={<Navigate to="/register" replace />} />
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/login" element={<LoginPage />} />
@@ -19,8 +36,11 @@ const App = () => {
           <Route path="/pending" element={<PandingPage />} />
           <Route path="/forget" element={<ForgetPage />} />
           <Route path="/reset" element={<ResetPage />} />
-        </Routes>
-      </AuthLayout>
+        </Route>
+
+        {/* ---- welcome page bilkul alag, apna full-screen layout ---- */}
+        <Route path="/welcome" element={<WelcomePage />} />
+      </Routes>
     </BrowserRouter>
   );
 };

@@ -52,7 +52,7 @@ const LoginPage = () => {
           localStorage.setItem("authCookie", data.cookie);
         }
 
-        navigate("/"); //  home page par redirect
+        navigate("/welcome"); //  home page par redirect
       } else {
         setError(data.message || "Invalid email or password");
       }
