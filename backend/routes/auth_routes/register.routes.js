@@ -19,7 +19,7 @@ router.route("/verifyOtp").post(verifyOtp)
 // ceo approval
 router.route("/ceoApproval/:requestId").post(approveRequest)
 // login
-router.route("/login").post(protect,login)
+router.route("/login").post(login)
 // logout 
 router.route("/logout").post(logout)
 // forgot password

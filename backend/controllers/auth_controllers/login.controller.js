@@ -85,12 +85,10 @@ const login = async (req, res) => {
     }
 
     if (!userExists.isApprovedByCEO) {
-      return res
-        .status(403)
-        .json({
-          success: false,
-          message: "Login denied. CEO approval required",
-        });
+      return res.status(403).json({
+        success: false,
+        message: "Login denied. CEO approval required",
+      });
     }
 
     const isPasswordCorrect = await bcrypt.compare(
@@ -110,14 +108,27 @@ const login = async (req, res) => {
         .json({ success: false, message: "Access denied. Invalid role" });
     }
 
-    generateToken(res, userExists._id);
+    
+    const token = generateToken(res, userExists._id);
+
     return res.status(200).json({
       success: true,
       message: "User logged in successfully",
-      user: userExists,
+      token, // yeh add karo
+      user: {
+        id: userExists._id,
+        email: userExists.email,
+        role: userExists.role,
+      },
     });
   } catch (error) {
     res.status(500).json({ success: false, message: "Server error" });
   }
 };
 export default login;
+// generateToken(res, userExists._id);
+    // return res.status(200).json({
+    //   success: true,
+    //   message: "User logged in successfully",
+    //   user: userExists,
+    // });
