@@ -35,7 +35,7 @@ const App = () => {
           <Route path="/verifyotp" element={<OtpPage />} />
           <Route path="/pending" element={<PandingPage />} />
           <Route path="/forget" element={<ForgetPage />} />
-          <Route path="/reset" element={<ResetPage />} />
+          <Route path="/resetPassword/:token" element={<ResetPage />} />
         </Route>
 
         {/* ---- welcome page bilkul alag, apna full-screen layout ---- */}
