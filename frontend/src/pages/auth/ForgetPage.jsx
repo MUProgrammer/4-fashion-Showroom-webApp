@@ -11,16 +11,7 @@ import {
 import { useNavigate } from "react-router-dom";
 
 const ForgetPage = () => {
-  const navigate = useNavigate();
-  const [email, setEmail] = useState("");
-  const [error, setError] = useState("");
-
-  function handleSubmit(e) {
-    e.preventDefault();
-    setError("");
-    const res = forgotPassword(email);
-    if (res?.error) setError(res.error);
-  }
+  
   return (
     <div>
       <AuthBrand />
@@ -46,8 +37,7 @@ const ForgetPage = () => {
               required
               placeholder="you@example.com"
               className={inputClass()}
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              
             />
           </div>
         </div>
