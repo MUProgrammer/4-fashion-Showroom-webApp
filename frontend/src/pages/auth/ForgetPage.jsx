@@ -11,7 +11,17 @@ import {
 import { useNavigate } from "react-router-dom";
 
 const ForgetPage = () => {
-  
+  const [formData, setFormData] = useState({ email: "" });
+  const [error, setError] = useState("");
+  const [message, setMessage] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [sent, setSent] = useState(false);
+  const navigate = useNavigate();
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+  // handle Submit
   return (
     <div>
       <AuthBrand />
@@ -37,7 +47,6 @@ const ForgetPage = () => {
               required
               placeholder="you@example.com"
               className={inputClass()}
-              
             />
           </div>
         </div>
