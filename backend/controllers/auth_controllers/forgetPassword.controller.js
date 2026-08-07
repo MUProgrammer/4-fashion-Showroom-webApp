@@ -1,6 +1,8 @@
 import express from "express";
 import { sendResetPasswordEmail } from "../../middlewares/email.js";
-
+import User from "../../models/user_models/user.models.js";
+import bcrypt from "bcryptjs";
+import crypto from "crypto";
 // forget password
 const forgetPassword = async (req, res) => {
   try {
