@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import {
   AuthBrand,
@@ -15,17 +14,47 @@ const ResetPage = () => {
   const [password, setPassword] = useState("");
   const [confirm, setConfirm] = useState("");
   const [error, setError] = useState("");
-
-  function handleSubmit(e) {
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
-    const res = resetPassword(password, confirm);
-    if (res?.error) setError(res.error);
-    else {
-      setPassword("");
-      setConfirm("");
+    setMessage("");
+
+    if (formData.password !== formData.confirmPassword) {
+      setError("Passwords do not match!");
+      return;
     }
-  }
+
+    setLoading(true); // ✅ disable button
+
+    try {
+      const response = await fetch(
+        `http://localhost:5000/auth/user/resetPassword/${token}`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ password: formData.password }),
+        },
+      );
+
+      const data = await response.json();
+
+      if (response.ok) {
+        setMessage("🎉 Password reset successfully! Redirecting to login...");
+        setTimeout(() => {
+          window.location.href = "/login";
+        }, 2000);
+      } else {
+        setError(data.message);
+      }
+    } catch (error) {
+      setError("Something went wrong!");
+    } finally {
+      setLoading(false); // ✅ re-enable button
+    }
+  };
   return (
     <div>
       <AuthBrand />
