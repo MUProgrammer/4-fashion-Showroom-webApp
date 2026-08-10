@@ -6,7 +6,7 @@ import { sendPasswordChangedEmail } from "../../middlewares/email.js";
 // reset password
 const resetPassword = async (req, res) => {
   try {
-    const { token } = req.body;
+    const { token } = req.params;
     const { password } = req.body;
     // check password field is fill
     if (!password) {
