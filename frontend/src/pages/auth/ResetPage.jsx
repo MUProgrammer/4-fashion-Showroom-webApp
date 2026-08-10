@@ -34,7 +34,7 @@ const ResetPage = () => {
       return;
     }
 
-    setLoading(true); // ✅ disable button
+    setLoading(true); //  disable button
 
     try {
       const response = await fetch(
@@ -59,7 +59,7 @@ const ResetPage = () => {
     } catch (error) {
       setError("Something went wrong!");
     } finally {
-      setLoading(false); // ✅ re-enable button
+      setLoading(false); //  re-enable button
     }
   };
   return (
