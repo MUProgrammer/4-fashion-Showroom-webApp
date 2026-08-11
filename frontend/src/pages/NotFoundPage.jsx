@@ -87,7 +87,7 @@ export default function NotFoundPage() {
           </button>
         </div>
 
-        <div className="flex gap-5 justify-center flex-wrap text-[12.5px] font-semibold">
+        {/* <div className="flex gap-5 justify-center flex-wrap text-[12.5px] font-semibold">
           <button
             onClick={() => navigate('/invoices')}
             className="flex items-center gap-1.5 text-white/55 hover:text-white transition"
@@ -119,7 +119,7 @@ export default function NotFoundPage() {
             </svg>
             Contact support
           </button>
-        </div>
+        </div> */}
       </div>
     </div>
   );
