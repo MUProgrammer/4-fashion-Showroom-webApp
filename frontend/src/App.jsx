@@ -14,6 +14,7 @@ import PandingPage from "./pages/auth/PandingPage";
 import ForgetPage from "./pages/auth/ForgetPage";
 import ResetPage from "./pages/auth/ResetPage";
 import WelcomePage from "./pages/auth/WelcomePage";
+import HomePage from "./pages/HomePage";
 
 // AuthLayout ab sirf auth pages ko wrap karta hai.
 // <Outlet /> wohi child route render karta hai jo match hua ho.
@@ -29,7 +30,7 @@ const App = () => {
       <Routes>
         {/* ---- auth pages, AuthLayout ke andar ---- */}
         <Route element={<AuthLayoutRoute />}>
-          <Route path="/" element={<Navigate to="/register" replace />} />
+          
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/verifyotp" element={<OtpPage />} />
@@ -39,6 +40,7 @@ const App = () => {
         </Route>
 
         {/* ---- welcome page bilkul alag, apna full-screen layout ---- */}
+        <Route path="/" element={<HomePage/>} />
         <Route path="/welcome" element={<WelcomePage />} />
       </Routes>
     </BrowserRouter>
