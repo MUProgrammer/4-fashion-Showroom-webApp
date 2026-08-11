@@ -108,19 +108,13 @@ const login = async (req, res) => {
         .json({ success: false, message: "Access denied. Invalid role" });
     }
 
-    
-    const token = generateToken(res, userExists._id);
+    // const token = generateToken(res, userExists._id);
 
+    generateToken(res, userExists._id);
     return res.status(200).json({
       success: true,
       message: "User logged in successfully",
-      token, // yeh add karo
-      user: {
-        id: userExists._id,
-        email: userExists.email,
-        username: userExists.username,
-        role: userExists.role,
-      },
+      user: userExists,
     });
   } catch (error) {
     res.status(500).json({ success: false, message: "Server error" });
@@ -128,8 +122,8 @@ const login = async (req, res) => {
 };
 export default login;
 // generateToken(res, userExists._id);
-    // return res.status(200).json({
-    //   success: true,
-    //   message: "User logged in successfully",
-    //   user: userExists,
-    // });
+// return res.status(200).json({
+//   success: true,
+//   message: "User logged in successfully",
+//   user: userExists,
+// });
