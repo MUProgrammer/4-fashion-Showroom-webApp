@@ -8,6 +8,7 @@ import logout from "../../controllers/auth_controllers/logout.controller.js"
 import forgetPassword from "../../controllers/auth_controllers/forgetPassword.controller.js"
 import resetPassword from "../../controllers/auth_controllers/resetPassword.controller.js"
 import { isCEO, protect } from "../../middlewares/authMiddleware.js"
+import resendOTP from "../../controllers/auth_controllers/resendOtp.controller.js"
 const router = express.Router()
 
 // register the user 
@@ -16,6 +17,9 @@ router.route("/register").post(registerUser)
 router.route("/createCEO").post(createCEO)
 // verify otp 
 router.route("/verifyOtp").post(verifyOtp)
+// resend OTP
+router.route("/resendOtp").post(resendOTP)
+
 // ceo approval
 router.route("/ceoApproval/:requestId").post(approveRequest)
 // login
