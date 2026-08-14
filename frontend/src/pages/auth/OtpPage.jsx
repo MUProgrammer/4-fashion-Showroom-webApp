@@ -36,25 +36,28 @@ const OtpPage = (userEmail) => {
   // Resend OTP => Backend Call
   const handleResend = async () => {
     try {
-      // get email from localStorage
-      const userInfo = json.parse(localStorage.getItem("userInfo"));
+      // ✅ Get email from localStorage if not passed as prop
+      const userInfo = JSON.parse(localStorage.getItem("userInfo") || "{}");
       const userEmail = userInfo?.email;
+
       if (!userEmail) {
         alert("Email not found. Please signup again.");
         return;
       }
+
       const response = await fetch(
-        "http://localhost:5000/auth/user/verifyOtp",
+        "http://localhost:5000/auth/user/resendOtp",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          credentials: "include",
+          credentials: "include", // ✅ send cookie if backend sets it
           body: JSON.stringify({ email: userEmail }),
         },
       );
+
       const data = await response.json();
       if (response.ok) {
-        setTimer(120); // reset timer
+        setTime(120); // reset timer
         setCanResend(false);
         setOtp(Array(6).fill("")); // clear OTP inputs
         alert(data.message);
