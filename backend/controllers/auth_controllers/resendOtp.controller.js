@@ -2,7 +2,7 @@ import express from "express";
 
 const resendOTP = async (req, res) => {
   try {
-
+      // resend otp
   } catch (error) {
     res.status(500).json({
       success: false,
