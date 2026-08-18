@@ -16,6 +16,7 @@ import ResetPage from "./pages/auth/ResetPage";
 import WelcomePage from "./pages/auth/WelcomePage";
 import HomePage from "./pages/HomePage";
 import NotFoundPage from "./pages/NotFoundPage";
+import Sidebar from "./components/Sidebar";
 
 // AuthLayout ab sirf auth pages ko wrap karta hai.
 // <Outlet /> wohi child route render karta hai jo match hua ho.
@@ -43,6 +44,7 @@ const App = () => {
         <Route path="*" element={<NotFoundPage />} />
         <Route path="/" element={<HomePage />} />
         <Route path="/welcome" element={<WelcomePage />} />
+        <Route path="/dashboard" element={<Sidebar />} />
       </Routes>
     </BrowserRouter>
   );
