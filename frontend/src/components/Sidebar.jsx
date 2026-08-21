@@ -129,7 +129,7 @@ const Sidebar = () => {
           Logout
         </button>
       </div>
-{/* SD */}
+{/*  */}
       <div className="mt-5 text-[11.5px] text-[rgba(241,217,211,0.55)] pl-1 leading-relaxed">
         4 Fashion Shop Manager
         <br />
