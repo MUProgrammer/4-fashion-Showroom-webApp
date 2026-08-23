@@ -10,6 +10,8 @@ import resetPassword from "../../controllers/auth_controllers/resetPassword.cont
 import { authenticate, isCEO } from "../../middlewares/authMiddleware.js";
 import resendOTP from "../../controllers/auth_controllers/resendOtp.controller.js";
 import getCurrentUserProlie from "../../controllers/auth_controllers/getCurrentUserProfile.controller.js";
+import updateProfile from "../../controllers/auth_controllers/updateProfile.controller.js";
+import upload from "../../middlewares/profilePicMiddleware.js";
 const router = express.Router();
 
 // register the user
@@ -33,5 +35,10 @@ router.route("/forgetPassword").post(forgetPassword);
 router.route("/resetPassword/:token").post(resetPassword);
 
 // get Current User Prolie
-router.route("/getProfile").get(authenticate, getCurrentUserProlie);
+router.route("/profile").get(authenticate, getCurrentUserProlie);
+// update Current User Prolie
+router
+  .route("/profile/:id")
+  .put(authenticate, upload.single("profliePic"), updateProfile);
+
 export default router;
