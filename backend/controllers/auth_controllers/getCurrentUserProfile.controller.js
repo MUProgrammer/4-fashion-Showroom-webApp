@@ -16,4 +16,4 @@ const getCurrentUserProlie = async (req, res) => {
     });
   }
 };
-export { getCurrentUserProlie };
+export default getCurrentUserProlie ;

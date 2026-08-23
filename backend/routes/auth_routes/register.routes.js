@@ -7,8 +7,9 @@ import login from "../../controllers/auth_controllers/login.controller.js";
 import logout from "../../controllers/auth_controllers/logout.controller.js";
 import forgetPassword from "../../controllers/auth_controllers/forgetPassword.controller.js";
 import resetPassword from "../../controllers/auth_controllers/resetPassword.controller.js";
-import { isCEO } from "../../middlewares/authMiddleware.js";
+import { authenticate, isCEO } from "../../middlewares/authMiddleware.js";
 import resendOTP from "../../controllers/auth_controllers/resendOtp.controller.js";
+import getCurrentUserProlie from "../../controllers/auth_controllers/getCurrentUserProfile.controller.js";
 const router = express.Router();
 
 // register the user
@@ -30,4 +31,7 @@ router.route("/logout").post(logout);
 router.route("/forgetPassword").post(forgetPassword);
 // reset password
 router.route("/resetPassword/:token").post(resetPassword);
+
+// get Current User Prolie
+router.route("/getProfile").get(authenticate, getCurrentUserProlie);
 export default router;
