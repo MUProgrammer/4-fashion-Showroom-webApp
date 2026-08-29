@@ -7,7 +7,7 @@ import { fileURLToPath } from "url";
 import session from "express-session";
 import connectDB from "./config/db_config/db.config.js";
 import userRoutes from "./routes/auth_routes/register.routes.js";
-import adminRoutes from "./routes/auth_routes/admin.routes.js";
+import ceoRoutes from "./routes/auth_routes/ceo.routes.js";
 // dotenv middleware
 dotenv.config();
 
@@ -38,7 +38,7 @@ app.use(cookieParser());
 
 // routes 
 app.use("/auth/user", userRoutes);
-// app.use("/auth/admin",adminRoutes);
+app.use("/auth/ceo",ceoRoutes);
 // server 
 const port = process.env.PORT || 6000;
 app.listen(port, () => {
