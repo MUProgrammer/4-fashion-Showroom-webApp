@@ -39,6 +39,6 @@ router.route("/profile").get(authenticate, getCurrentUserProlie);
 // update Current User Prolie
 router
   .route("/profile/:id")
-  .put(authenticate, upload.single("profliePic"), updateProfile);
+  .put(authenticate, upload.single("profilePic"), updateProfile);
 
 export default router;
