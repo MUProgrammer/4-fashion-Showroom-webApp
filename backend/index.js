@@ -7,7 +7,7 @@ import { fileURLToPath } from "url";
 import session from "express-session";
 import connectDB from "./config/db_config/db.config.js";
 import userRoutes from "./routes/auth_routes/register.routes.js";
-import ceoRoutes from "./routes/auth_routes/ceo.routes.js";
+import ceoRoutes from "./routes/ceo_routes/ceo.routes.js";
 // dotenv middleware
 dotenv.config();
 
