@@ -85,4 +85,15 @@ const isCEO = async (req, res, next) => {
     res.status(401).json({ message: "Unauthorized As a Admin" });
   }
 };
-export { authenticate, isCEO };
+
+// chech status
+const checkStatus = async (req, res, next) => {
+  if (req.user.status === "blocked") {
+    return res.status(403).json({
+      success: false,
+      message: "Your account has been blocked",
+    });
+  }
+  next();
+};
+export { authenticate, isCEO, checkStatus };

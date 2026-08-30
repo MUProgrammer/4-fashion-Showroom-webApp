@@ -4,6 +4,7 @@ import getAllUsers from "../../controllers/ceo_controllers/getAllUser.controller
 import getUserById from "../../controllers/ceo_controllers/getUserById.controller.js";
 import updateUserById from "../../controllers/ceo_controllers/updateUserById.controller.js";
 import deleteUserById from "../../controllers/ceo_controllers/deleteUserById.controller.js";
+import statusById from "../../controllers/ceo_controllers/status.controller.js";
 const router = express.Router();
 
 // get All Users
@@ -13,5 +14,6 @@ router
   .route("/user/:id")
   .get(authenticate, isCEO, getUserById)
   .put(authenticate, isCEO, updateUserById)
-  .delete(authenticate, isCEO, deleteUserById);
+  .delete(authenticate, isCEO, deleteUserById)
+  .post(authenticate, isCEO, statusById);
 export default router;

@@ -78,6 +78,14 @@ const login = async (req, res) => {
         .json({ success: false, message: "User not found" });
     }
 
+    // ✅ Fixed: "user" ko "userExists" se badla
+    if (userExists.status === "blocked") {
+      return res.status(403).json({
+        success: false,
+        message: "Your account has been blocked. Please contact admin.",
+      });
+    }
+
     if (!userExists.isVerified) {
       return res
         .status(400)
@@ -108,8 +116,6 @@ const login = async (req, res) => {
         .json({ success: false, message: "Access denied. Invalid role" });
     }
 
-    // const token = generateToken(res, userExists._id);
-
     generateToken(res, userExists._id);
     return res.status(200).json({
       success: true,
@@ -117,6 +123,7 @@ const login = async (req, res) => {
       user: userExists,
     });
   } catch (error) {
+    console.error("Login error:", error);
     res.status(500).json({ success: false, message: "Server error" });
   }
 };

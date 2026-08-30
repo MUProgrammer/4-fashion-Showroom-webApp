@@ -25,6 +25,12 @@ const userSchema = new mongoose.Schema(
       default: "user",
       required: true,
     },
+    status: {
+      type: String,
+      enum: ["active", "blocked"],
+      default: "active",
+      required: true,
+    },
     promotedBy: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",

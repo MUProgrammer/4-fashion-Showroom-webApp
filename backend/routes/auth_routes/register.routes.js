@@ -12,6 +12,7 @@ import resendOTP from "../../controllers/auth_controllers/resendOtp.controller.j
 import getCurrentUserProlie from "../../controllers/auth_controllers/getCurrentUserProfile.controller.js";
 import updateProfile from "../../controllers/auth_controllers/updateProfile.controller.js";
 import upload from "../../middlewares/profilePicMiddleware.js";
+import { checkStatus } from "../../middlewares/authMiddleware.js";
 const router = express.Router();
 
 // register the user
@@ -24,7 +25,9 @@ router.route("/verifyOtp").post(verifyOtp);
 router.route("/resendOtp").post(resendOTP);
 
 // ceo approval
-router.route("/ceoApproval/:requestId").post(isCEO, approveRequest);
+router
+  .route("/ceoApproval/:requestId")
+  .post(authenticate, isCEO, approveRequest);
 // login
 router.route("/login").post(login);
 // logout
@@ -35,10 +38,10 @@ router.route("/forgetPassword").post(forgetPassword);
 router.route("/resetPassword/:token").post(resetPassword);
 
 // get Current User Prolie
-router.route("/profile").get(authenticate, getCurrentUserProlie);
+router.route("/profile").get(authenticate, checkStatus, getCurrentUserProlie);
 // update Current User Prolie
 router
   .route("/profile/:id")
-  .put(authenticate, upload.single("profilePic"), updateProfile);
+  .put(authenticate, checkStatus, upload.single("profilePic"), updateProfile);
 
 export default router;
