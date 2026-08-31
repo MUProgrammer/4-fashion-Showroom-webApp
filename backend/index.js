@@ -11,7 +11,7 @@ import ceoRoutes from "./routes/ceo_routes/ceo.routes.js";
 // dotenv middleware
 dotenv.config();
 
-// connect to database
+// connect to the database
 connectDB();
 
 // middlewares
