@@ -8,6 +8,7 @@ const variantSchema = new mongoose.Schema({
   size: { type: String, required: true },
   colors: [colorSchema],
 });
+//
 const articalSchema = new mongoose.Schema({
   articleName: {
     type: String,
