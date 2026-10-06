@@ -86,6 +86,20 @@ const isCEO = async (req, res, next) => {
   }
 };
 
+// ✅ Admin role check middleware
+const isAdmin = async (req, res, next) => {
+  try {
+    if (req.user && req.user.role === "admin") {
+      next();
+    } else {
+      return res
+        .status(403)
+        .json({ success: false, message: "Access denied. Admin only." });
+    }
+  } catch (error) {
+    res.status(401).json({ message: "Unauthorized As a Admin" });
+  }
+};
 // chech status
 const checkStatus = async (req, res, next) => {
   if (req.user.status === "blocked") {
@@ -96,4 +110,4 @@ const checkStatus = async (req, res, next) => {
   }
   next();
 };
-export { authenticate, isCEO, checkStatus };
+export { authenticate, isCEO, isAdmin, checkStatus };
