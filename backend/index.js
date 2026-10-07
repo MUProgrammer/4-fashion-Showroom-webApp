@@ -8,12 +8,14 @@ import session from "express-session";
 import connectDB from "./config/db_config/db.config.js";
 import userRoutes from "./routes/auth_routes/register.routes.js";
 import ceoRoutes from "./routes/ceo_routes/ceo.routes.js";
+import adminRoutes from "./routes/admin_routes/admin.routes.js";
+import subadminRoutes from "./routes/subAdmin_routes/subAdmin.routes.js";
 // dotenv middleware
 dotenv.config();
 
 // connect to the database
 connectDB();
- // 
+//
 // middlewares
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -33,13 +35,15 @@ app.use(
 );
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
- 
+
 app.use(cookieParser());
 
-// routes 
+// routes
 app.use("/auth/user", userRoutes);
-app.use("/auth/ceo",ceoRoutes);
-// server 
+app.use("/ceo", ceoRoutes);
+app.use("/admin", adminRoutes);
+app.use("/subadmin", subadminRoutes);
+// server
 const port = process.env.PORT || 6000;
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);

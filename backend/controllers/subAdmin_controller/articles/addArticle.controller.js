@@ -1,4 +1,4 @@
-import { createArticleService } from "../../services/article.service";
+import { createArticleService } from "../../services/article.service.js";
 
 // Add Article Controller
 

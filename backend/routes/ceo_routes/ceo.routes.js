@@ -16,7 +16,7 @@ const router = express.Router();
 router.route("/users").get(authenticate, isCEO, getAllUsers);
 // get user By ID , update user by ID, delete user by ID
 router
-  .route("/user/:id")
+  .route("/authuser/:id")
   .get(authenticate, isCEO, getUserById)
   .put(authenticate, isCEO, updateUserById)
   .delete(authenticate, isCEO, deleteUserById)

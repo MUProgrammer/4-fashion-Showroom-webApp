@@ -100,6 +100,21 @@ const isAdmin = async (req, res, next) => {
     res.status(401).json({ message: "Unauthorized As a Admin" });
   }
 };
+// ✅ subAdmin role check middleware
+
+const isSubAdmin = async (req, res, next) => {
+  try {
+    if (req.user && req.user.role === "subadmin") {
+      next();
+    } else {
+      return res
+        .status(403)
+        .json({ success: false, message: "Access denied. Subadmin only." });
+    }
+  } catch (error) {
+    res.status(401).json({ message: "Unauthorized As a subAdmin" });
+  }
+};
 // chech status
 const checkStatus = async (req, res, next) => {
   if (req.user.status === "blocked") {
@@ -110,4 +125,4 @@ const checkStatus = async (req, res, next) => {
   }
   next();
 };
-export { authenticate, isCEO, isAdmin, checkStatus };
+export { authenticate, isCEO, isAdmin, isSubAdmin, checkStatus };
