@@ -4,14 +4,19 @@ import { createArticleService } from "../../services/article.service.js";
 
 const addArticle = async (req, res) => {
   try {
-    const article = await createArticleService(req.body, req.user._id);
+    const article = await createArticleService(
+      req.body,
+      req.user._id,
+      req.user.role,
+    );
     return res
       .status(201)
       .json({ success: true, message: "Article added", article });
   } catch (error) {
+    console.log(error);
     return res.status(500).json({
       success: false,
-      message: "Server error in Add Article Controller",
+      message: "Server error in Add Article Controller CEO",
     });
   }
 };

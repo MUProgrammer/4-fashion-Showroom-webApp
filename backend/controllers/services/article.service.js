@@ -1,9 +1,12 @@
 import Article from "../../models/article_models/article.model.js";
 
 // Create articl services
-export const createArticleService = async (data, userId) => {
-  const article = await Article.create({ ...data, userId });
-  await article.save();
+export const createArticleService = async (data, userId, role) => {
+  const article = await Article.create({
+    ...data,
+    createdBy: userId,
+    createdByRole: role,
+  });
   return article;
 };
 
