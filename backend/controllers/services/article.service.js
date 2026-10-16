@@ -11,11 +11,22 @@ export const createArticleService = async (data, userId, role) => {
 };
 
 // Update article service
-export const updateArticleService = async (id, data) => {
-  const article = await Article.findOneAndUpdate({ _id: id }, data, {
-    new: true,
-  });
-  if (!article) throw new Error("Article not found");
+export const updateArticleService = async (id, data, userId, role) => {
+  const { createdBy, createdByRole, updatedBy, updatedByRole, ...safeData } =
+    data;
+  const article = await Article.findOneAndUpdate(
+    { _id: id },
+    {
+      ...safeData,
+      updatedBy: userId,
+      updatedByRole: role,
+    },
+    {
+      new: true,
+      runValidators: true,
+    },
+  );
+
   return article;
 };
 

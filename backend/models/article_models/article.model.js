@@ -25,6 +25,14 @@ const articalSchema = new mongoose.Schema({
     required: true,
     enum: ["ceo", "admin", "subadmin"],
   },
+  updatedBy: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
+  },
+  updatedByRole: {
+    type: String,
+    enum: ["ceo", "admin", "subadmin"],
+  },
 });
 
 const Article = mongoose.model("Article", articalSchema);
