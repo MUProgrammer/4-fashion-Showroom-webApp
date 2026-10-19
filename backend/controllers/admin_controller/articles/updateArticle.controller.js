@@ -31,3 +31,4 @@ const UpdateArticle = async (req, res) => {
 };
 
 export default UpdateArticle;
+//
